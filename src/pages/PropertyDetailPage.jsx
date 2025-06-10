@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { HomeIcon, MapPinIcon, CalendarIcon, CheckIcon } from '@heroicons/react/24/outline';
 import Button from '../components/ui/Button';
-
+import { propertyService } from '../services/propertyService';
 const PropertyDetailPage = () => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
@@ -10,21 +10,20 @@ const PropertyDetailPage = () => {
 
   useEffect(() => {
     // TODO: Implement API call to fetch property details
-    // const fetchProperty = async () => {
-    //   try {
-    //     const response = await propertyAPI.getPropertyById(id);
-    //     setProperty(response.data);
-    //   } catch (error) {
-    //     console.error('Error fetching property:', error);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-    // fetchProperty();
+    const fetchProperty = async () => {
+      try {
+        const response = await propertyService.getPropertyById(id);
+        
+        setProperty(response);
+      } catch (error) {
+        console.error('Error fetching property:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProperty();
 
-    // Temporary placeholder
-    setProperty(null);
-    setLoading(false);
+   
   }, [id]);
 
   if (loading) {
@@ -89,7 +88,7 @@ const PropertyDetailPage = () => {
         <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
           <div className="aspect-w-16 aspect-h-9">
             <img 
-              src={property.image} 
+              src={property.imageUrls?.[0] || 'https://via.placeholder.com/600x400'} 
               alt={property.title}
               className="w-full h-96 object-cover"
             />
@@ -112,7 +111,7 @@ const PropertyDetailPage = () => {
               
               <div className="flex items-center text-gray-600 mb-4">
                 <MapPinIcon className="h-5 w-5 mr-2" />
-                <span className="text-lg">{property.location}</span>
+                <span className="text-lg">{property.city}</span>
               </div>
               
               <div className="text-3xl font-bold text-primary-600 mb-6">
@@ -129,7 +128,7 @@ const PropertyDetailPage = () => {
                   <div className="text-gray-600">Bathrooms</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{property.area.toLocaleString()}</div>
+                  <div className="text-2xl font-bold text-gray-900">{property.squareFeet}</div>
                   <div className="text-gray-600">Sq Ft</div>
                 </div>
                 <div className="text-center">
@@ -185,7 +184,7 @@ const PropertyDetailPage = () => {
                 </div>
               </div>
 
-              {property.status === 'For Sale' ? (
+              {property.status?.toString().toLowerCase() === 'available' ? (
                 <Button 
                   variant="primary" 
                   size="lg" 
