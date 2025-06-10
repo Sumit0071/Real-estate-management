@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: dreamhome-backend
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/dreamhome_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: "@Risy2000"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# JWT Configuration
+jwt:
+  secret: dreamhome-secret-key-for-jwt-token-generation-2024
+  expiration: 86400000 # 24 hours in milliseconds
+
+# File Upload Configuration
+file:
+  upload:
+    dir: uploads/
+    max-size: 10MB
+
+# CORS Configuration
+cors:
+  allowed-origins: http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
+  allowed-headers: "Authorization,Content-Type,Accept,Origin,X-Requested-With,Access-Control-Request-Method,Access-Control-Request-Headers"
+  exposed-headers: "Authorization,Content-Disposition"
+  allow-credentials: true
+  max-age: 3600
+
+# Logging
+logging:
+  level:
+    com.dreamhome: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
