@@ -7,6 +7,7 @@ export const propertyService = {
       const response = await api.get('/properties/public', {
         params: { page, size, sortBy, sortDir }
       });
+      console.log(response.data)
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch properties' };
