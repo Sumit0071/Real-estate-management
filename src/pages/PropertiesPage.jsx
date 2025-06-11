@@ -46,7 +46,7 @@ const PropertiesPage = () => {
     try {
       setLoading( true );
       const response = await propertyService.searchProperties( filters );
-      setProperties( response.data );
+      setProperties( response.content );
     } catch ( error ) {
       console.error( 'Error searching properties:', error );
     } finally {
@@ -169,7 +169,7 @@ const PropertiesPage = () => {
         {!loading && (
           <div className="mb-6">
             <p className="text-gray-600">
-              Showing {currentProperties.length} of {filteredProperties.length} properties
+              Showing {currentProperties.length} of {properties.length} properties
             </p>
           </div>
         )}

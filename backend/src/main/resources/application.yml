@@ -55,3 +55,6 @@ logging:
     org.springframework.security: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+razorpay:
+  api-key: "rzp_test_9thUJzKFwVRjl1"
+  api-secret: "EchligErs28yRZG6QEBCLfAs"
