@@ -10,8 +10,8 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/dreamhome_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: "@Risy2000"
-
+#    password: "@Risy2000"
+    password: "Su@230504"
     driver-class-name: com.mysql.cj.jdbc.Driver
   
   jpa:
@@ -56,5 +56,5 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
 razorpay:
-  api-key: "YOUR_API_KEY_ID"
-  api-secret: "YOUR_API_SECRET"
+  api-key: "rzp_test_9thUJzKFwVRjl1"
+  api-secret: "EchligErs28yRZG6QEBCLfAs"
