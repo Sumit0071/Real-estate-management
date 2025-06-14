@@ -56,5 +56,5 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
 razorpay:
-  api-key: "rzp_test_9thUJzKFwVRjl1"
-  api-secret: "EchligErs28yRZG6QEBCLfAs"
+  api-key: "rzp_test_j6fXiV2OT2aA58"
+  api-secret: "H2jCPbmCLs2bY4TbDi4yW8mt"
